@@ -1,4 +1,4 @@
-package com.neusoft.entity;
+package com.haha;
 
 public class Student {
     private Integer stuNo;

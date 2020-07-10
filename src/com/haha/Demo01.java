@@ -1,4 +1,4 @@
-package com.neusoft;
+package com.haha;
 import com.neusoft.util.DButil;
 import java.sql.*;
 
