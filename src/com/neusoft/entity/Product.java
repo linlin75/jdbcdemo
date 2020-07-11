@@ -5,10 +5,17 @@ public class Product {
     private String sku;
     private String title;
 
+    public Product() {
+        super();
+    }
 
     public Product(Integer proId, String sku, String title) {
         this.proId = proId;
         this.sku = sku;
+        this.title = title;
+    }
+
+    public Product(String string) {
         this.title = title;
     }
 
