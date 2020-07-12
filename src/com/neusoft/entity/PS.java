@@ -11,6 +11,12 @@ public class PS {
     private double price;
     private String typeCD;
 
+    public PS(Integer proId, String title, double price, String typeCD) {
+        this.proId = proId;
+        this.title = title;
+        this.price = price;
+        this.typeCD = typeCD;
+    }
 
     public PS(Integer proId, String sku, String title, int ofpId, Date effetiveStarDate, Date effetiveEndDate, double price, String typeCD) {
         this.proId = proId;

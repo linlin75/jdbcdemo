@@ -4,13 +4,17 @@ import java.util.Date;
 
 public class OfferPrice {
     private int ofpId;
-    private Date effetiveStarDate;
-    private Date effetiveEndDate;
+    private String effetiveStarDate;
+    private String effetiveEndDate;
     private int proId;
     private double price;
     private String typeCD;
 
-    public OfferPrice(int ofpId, Date effetiveStarDate, Date effetiveEndDate, int proId, double price, String typeCD) {
+    public OfferPrice() {
+        super();
+    }
+
+    public OfferPrice(int ofpId, String effetiveStarDate, String effetiveEndDate, int proId, double price, String typeCD) {
         this.ofpId = ofpId;
         this.effetiveStarDate = effetiveStarDate;
         this.effetiveEndDate = effetiveEndDate;
@@ -27,19 +31,19 @@ public class OfferPrice {
         this.ofpId = ofpId;
     }
 
-    public Date getEffetiveStarDate() {
+    public String getEffetiveStarDate() {
         return effetiveStarDate;
     }
 
-    public void setEffetiveStarDate(Date effetiveStarDate) {
+    public void setEffetiveStarDate(String effetiveStarDate) {
         this.effetiveStarDate = effetiveStarDate;
     }
 
-    public Date getEffetiveEndDate() {
+    public String getEffetiveEndDate() {
         return effetiveEndDate;
     }
 
-    public void setEffetiveEndDate(Date effetiveEndDate) {
+    public void setEffetiveEndDate(String effetiveEndDate) {
         this.effetiveEndDate = effetiveEndDate;
     }
 

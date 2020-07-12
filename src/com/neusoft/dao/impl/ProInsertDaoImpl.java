@@ -1,5 +1,6 @@
-package com.neusoft.dao;
+package com.neusoft.dao.impl;
 
+import com.neusoft.dao.ProInsertDao;
 import com.neusoft.entity.Product;
 import com.neusoft.util.DButil;
 
@@ -10,22 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class InsertDaoImpl {
-    private final String STATICURL = "jdbc:mariadb://localhost:3306/mysqldb?user=root&password=mariadb";
+public class ProInsertDaoImpl implements ProInsertDao {
     private final String DBURL = "jdbc:mariadb://localhost:3306/";
-    private final String URL = "jdbc:mariadb://localhost:3306/mysqldb";
     private final String DB = "mysqldb";
     private final String USER = "root";
     private final String PASSWORD = "mariadb";
-    //用list把要插入的数据存起来
-   /* List<Product> getAllProduct() {
 
-        return product;
-    }*/
+    public List<Product> insertProduct() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int num = 0;
 
+        List<Product> product = new ArrayList<>();
 
-    public void Test() {
-        List<Product> product = new ArrayList<Product>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入你要插入的ID：");
         int proid = scanner.nextInt();
@@ -38,12 +36,7 @@ public class InsertDaoImpl {
         p.setSku(sku);
         p.setTitle(title);
         product.add(p);
-        //System.out.println(getAllProduct());          //打印出插入的数据
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
 
-        //List<Product> product = getAllProduct();
-        int num = 0;
         try {
             connection = DButil.getConnection(DB, DBURL, USER, PASSWORD);
             final String SQL = "insert into Product values (?,?,?)";
@@ -75,6 +68,7 @@ public class InsertDaoImpl {
                 }
             }
         }
+        return product;
     }
 }
 

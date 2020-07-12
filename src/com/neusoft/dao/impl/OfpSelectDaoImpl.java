@@ -1,32 +1,39 @@
-package com.neusoft.dao;
+package com.neusoft.dao.impl;
 
-import com.neusoft.entity.Product;
+import com.neusoft.dao.OfpSelectDao;
+import com.neusoft.entity.OfferPrice;
 import com.neusoft.util.DButil;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class ProSelectDaoImpl {
-    private final String URL = "jdbc:mariadb://localhost:3306/mysqldb";
+public class OfpSelectDaoImpl implements OfpSelectDao {
+    private final String DBURL = "jdbc:mariadb://localhost:3306/";
+    private final String DB = "mysqldb";
     private final String USER = "root";
     private final String PASSWORD = "mariadb";
 
-    public void selectProduct(){
+    public List<OfferPrice> selectOfferPrice() {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Statement statement = null;
         ResultSet resultSet = null;
 
+        List<OfferPrice> prices = new ArrayList<>();
+
         try {
-            connection = DButil.getConnection(URL, USER, PASSWORD);
+            connection = DButil.getConnection(DB, DBURL, USER, PASSWORD);
             statement = connection.createStatement();
-            final String SQL = "select * from mysqldb.product;";
+            final String SQL = "select * from mysqldb.offer_price;";
             resultSet = statement.executeQuery(SQL);
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt(1)+","
-                        +resultSet.getString(2)+","+ resultSet.getString(3));
+                System.out.println(resultSet.getInt(1) + ","
+                        + resultSet.getString(2) + ","
+                        + resultSet.getString(3) + ","
+                        + resultSet.getDouble(4) + ","
+                        + resultSet.getString(5) + ","
+                        + resultSet.getInt(6));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -52,6 +59,6 @@ public class ProSelectDaoImpl {
                 }
             }
         }
+        return prices;
     }
 }
-

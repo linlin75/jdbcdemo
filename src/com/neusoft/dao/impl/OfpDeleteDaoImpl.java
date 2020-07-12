@@ -1,32 +1,35 @@
-package com.neusoft.dao;
+package com.neusoft.dao.impl;
 
-import com.neusoft.entity.Product;
+import com.neusoft.dao.OfpDeleteDao;
+import com.neusoft.entity.OfferPrice;
 import com.neusoft.util.DButil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProDelectDaoImpl {
+public class OfpDeleteDaoImpl implements OfpDeleteDao {
     private final String DBURL = "jdbc:mariadb://localhost:3306/";
     private final String DB = "mysqldb";
     private final String USER = "root";
     private final String PASSWORD = "mariadb";
 
-    public void delectProduct() {
+    @Override
+    public List<OfferPrice> deleteOfferPrice() throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Scanner sc = new Scanner(System.in);
+
+        List<OfferPrice> offerPrices = new ArrayList<>();
 
         try {
             connection = DButil.getConnection(DB, DBURL, USER, PASSWORD);
             final String SQL = "delete from product where pro_id = ?;";
             preparedStatement = connection.prepareStatement(SQL);
-            System.out.println("请输入你要删除的商品ID：");
+            System.out.println("请输入你要删除的促销商品的ID：");
             int num = sc.nextInt();
             preparedStatement.setInt(1, num);
             preparedStatement.executeUpdate();
@@ -48,5 +51,6 @@ public class ProDelectDaoImpl {
                 }
             }
         }
+        return offerPrices;
     }
 }

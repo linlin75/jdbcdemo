@@ -1,11 +1,8 @@
 package com.neusoft.controller;
 
-import com.neusoft.entity.Product;
-import com.neusoft.service.ProductInsertService;
-import com.neusoft.service.ProductInsertServiceImpl;
+import com.neusoft.service.*;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
@@ -47,36 +44,66 @@ public class Controller {
             switch (num) {
                 case 1:
                     System.out.println("开始添加商品数据：");
-                    ProductInsertService service = new ProductInsertServiceImpl() {
-                        @Override
-                        public List<Product> insertProduct() throws SQLException {
-                            return insertProduct();
-                        }
-                    };
+                    ProductInsertService ps = new ProductInsertServiceImpl();
+                    try {
+                        ps.insertProduct();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     break;
                 case 2:
                     System.out.println("开始删除商品数据：");
-
+                    ProductDeleteService p = new ProductDeleteServiceImpl();
+                    try {
+                        p.deleteProduct();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     break;
                 case 3:
                     System.out.println("开始查询商品数据：");
-
+                    ProductSelectService s = new ProductSelectServiceImpl();
+                    try {
+                        System.out.println(s.selectProduct());
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     break;
                 case 4:
                     System.out.println("添加促销商品的信息：");
-
+                    OfpInsertService is = new OfpInsertServiceImpl();
+                    try {
+                        is.insertOfferPrice();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     break;
                 case 5:
                     System.out.println("删除促销商品的信息：");
-
+                    OfpDeleteService os = new OfpDeleteServiceImpl();
+                    try {
+                        os.selectOfferPrice();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     break;
                 case 6:
                     System.out.println("修改促销商品的信息");
-
+                    OfpUpdateService ou = new OfpUpdateServiceImpl();
+                    try {
+                        ou.updateOfp();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     break;
                 case 7:
                     System.out.println("查询促销商品的信息");
-
+                    OfpSelectService l = new OfpSelectServiceImpl();
+                    try {
+                        l.selectOfferPrice();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     break;
                 default:
                     System.out.println("操作结束！");
